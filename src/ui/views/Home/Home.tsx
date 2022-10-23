@@ -1,13 +1,18 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { PodcastApplication } from "../../../aplication";
+import { Podcast } from "../../../domain/models/Podcast";
+import { PodcastItem } from "../../components/PodcastItem";
+import { Wrapper } from "./Home.styles";
 
 const Home = () => {
+  const [podcastList, setPodcastList] = useState([] as Podcast[]);
   const fetchPodcast = useCallback(async () => {
     try {
       const podcasts = await PodcastApplication.getPodcastList;
-      console.log(podcasts);
+      setPodcastList(podcasts);
     } catch (e) {
       console.log(e);
+      setPodcastList([]);
     }
   }, []);
 
@@ -15,7 +20,19 @@ const Home = () => {
     fetchPodcast();
   }, [fetchPodcast]);
 
-  return <div>Podcast</div>;
+  return (
+    <Wrapper>
+      {podcastList &&
+        podcastList.map((item) => (
+          <PodcastItem
+            key={item.id.label}
+            name={item.name.label}
+            image={item.image}
+            author={item.artist.label}
+          ></PodcastItem>
+        ))}
+    </Wrapper>
+  );
 };
 
 export default Home;

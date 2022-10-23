@@ -1,12 +1,16 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Route, Routes } from "react-router-dom";
+import { GlobalStyle } from "./App.styles";
 import Home from "./ui/views/Home/Home";
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-    </Routes>
+    <Fragment>
+      <GlobalStyle />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Fragment>
   );
 };
 
