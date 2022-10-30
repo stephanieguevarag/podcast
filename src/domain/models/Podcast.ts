@@ -23,7 +23,7 @@ export interface Podcast {
   price: Price;
   releaseDate: ReleaseDate;
   link: Link;
-  rights: Label;
+  rights?: Label;
   summary: Label;
   title: Label;
 }

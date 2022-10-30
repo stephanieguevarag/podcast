@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   width: 290px;
   height: 200px;
   padding-top: 80px;
-  margin: 70px 15px;
+  margin: 60px 15px;
 `;
 
 const Cover = styled.img.attrs(({ src, srcSet }: ImageProps) => ({
@@ -32,4 +32,14 @@ const Container = styled.div`
   box-shadow: 0px 2px 5px 3px rgba(235, 235, 235, 1);
 `;
 
-export { Wrapper, Cover, Container };
+const Title = styled.p`
+  text-transform: uppercase;
+  font-size: 1rem;
+`;
+
+const Text = styled.p`
+  color: #5e5e5e;
+  font-size: 1rem;
+`;
+
+export { Wrapper, Cover, Container, Text, Title };
