@@ -1,0 +1,13 @@
+:root {
+    --font-family-roboto: 'Roboto', sans-serif;
+    --color-primary: black;
+    --color-secondary: #5e5e5e;
+    --color-secondary-light: rgba(235, 235, 235, 1);
+    --color-link: #0c89ea;
+}
+
+body {
+    box-sizing: border-box;
+    font-family: var(--font-family-roboto); 
+    margin: 0px;
+}

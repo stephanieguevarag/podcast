@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Route, Routes } from "react-router-dom";
 import { GlobalStyle } from "./App.styles";
 import Home from "./ui/views/Home/Home";
+import "./styles.css";
 
 const App = () => {
   return (

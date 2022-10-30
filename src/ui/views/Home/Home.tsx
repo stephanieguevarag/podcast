@@ -1,5 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 import { Podcast } from "../../../domain/models/Podcast";
+import { Header } from "../../components/Header";
 import { PodcastList } from "../../components/PodcastList";
 import { getPodcast } from "./Home.controller";
 
@@ -19,7 +20,12 @@ const Home = () => {
     fetchPodcast();
   }, [fetchPodcast]);
 
-  return <PodcastList podcastList={podcastList} />;
+  return (
+    <Fragment>
+      <Header></Header>
+      <PodcastList podcastList={podcastList} />
+    </Fragment>
+  );
 };
 
 export default Home;

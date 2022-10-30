@@ -33,7 +33,7 @@ const getPodcastStorageData = async () => {
 
 const fetchPodcast = async (): Promise<Podcast[]> => {
   try {
-    const podcasts = await PodcastApplication.getPodcastList;
+    const podcasts = await PodcastApplication.getPodcastList();
     savePodcastRequest(podcasts);
     return podcasts;
   } catch (e) {

@@ -29,7 +29,7 @@ const Container = styled.div`
   width: 100%;
   padding: 70px 10px 10px;
   text-align: center;
-  box-shadow: 0px 2px 5px 3px rgba(235, 235, 235, 1);
+  box-shadow: 0px 2px 5px 3px var(--color-secondary-light);
 `;
 
 const Title = styled.p`
@@ -38,7 +38,7 @@ const Title = styled.p`
 `;
 
 const Text = styled.p`
-  color: #5e5e5e;
+  color: var(--color-secondary);
   font-size: 1rem;
 `;
 
