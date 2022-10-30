@@ -9,7 +9,7 @@ interface PodcastListProps {
 
 const PodcastList = ({ podcastList }: PodcastListProps) => {
   return (
-    <Wrapper>
+    <Wrapper data-testid="podcast-list">
       {podcastList &&
         podcastList.map((item) => {
           const { id, name, image, artist } = item;
