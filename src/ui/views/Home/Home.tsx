@@ -1,14 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { PodcastApplication } from "../../../aplication";
 import { Podcast } from "../../../domain/models/Podcast";
 import { PodcastList } from "../../components/PodcastList";
+import { getPodcast } from "./Home.controller";
 
 const Home = () => {
   const [podcastList, setPodcastList] = useState([] as Podcast[]);
 
   const fetchPodcast = useCallback(async () => {
     try {
-      const podcasts = await PodcastApplication.getPodcastList;
+      const podcasts = await getPodcast();
       setPodcastList(podcasts);
     } catch (e) {
       setPodcastList([]);
