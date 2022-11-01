@@ -1,16 +1,29 @@
 import { ApiPodcast, Podcast } from "../../../domain/models/Podcast";
 import { fetchApi } from "../../api/fetch/fetchApi";
 
-const url = `https://api.allorigins.win/get?url=${encodeURIComponent(
+const url = "https://api.allorigins.win/get?url=";
+const podcastUrl = `${url}${encodeURIComponent(
   "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json"
 )}`;
 
 const ApiPodcastRepository = {
   getPodcastList: async () => {
     try {
-      const response = await fetchApi.get(url);
+      const response = await fetchApi.get(podcastUrl);
       const content = JSON.parse(response?.contents);
       return mapPodcast(content?.feed?.entry);
+    } catch (e) {
+      throw e;
+    }
+  },
+  getPodcastDetail: async (podcastId: string) => {
+    const podcastDetailUrl = `${url}${encodeURIComponent(
+      `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode`
+    )}`;
+    try {
+      const response = await fetchApi.get(podcastDetailUrl);
+      const content = JSON.parse(response?.contents);
+      return content;
     } catch (e) {
       throw e;
     }

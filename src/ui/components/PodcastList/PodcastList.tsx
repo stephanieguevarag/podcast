@@ -5,9 +5,10 @@ import { Wrapper } from "./PodcastList.styles";
 
 interface PodcastListProps {
   podcastList: Podcast[];
+  onSelectPodcast: (item: Podcast) => void;
 }
 
-const PodcastList = ({ podcastList }: PodcastListProps) => {
+const PodcastList = ({ podcastList, onSelectPodcast }: PodcastListProps) => {
   return (
     <Wrapper data-testid="podcast-list">
       {podcastList &&
@@ -19,6 +20,7 @@ const PodcastList = ({ podcastList }: PodcastListProps) => {
               name={name.label}
               image={image}
               author={artist.label}
+              onClick={() => onSelectPodcast(item)}
             ></PodcastItem>
           );
         })}

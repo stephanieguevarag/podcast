@@ -10,12 +10,6 @@ const renderComponent = () =>
   );
 
 describe("Home view", () => {
-  test("Should show home header", async () => {
-    renderComponent();
-    const headerText = screen.getByText("Podcaster");
-    expect(headerText).toBeInTheDocument();
-  });
-
   test("Should show podcastList component", async () => {
     renderComponent();
     const podcastList = screen.getByTestId("podcast-list");

@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   height: 200px;
   padding-top: 80px;
   margin: 60px 15px;
+  cursor: pointer;
 `;
 
 const Cover = styled.img.attrs(({ src, srcSet }: ImageProps) => ({
