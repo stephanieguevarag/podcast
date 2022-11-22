@@ -1,51 +1,28 @@
-import { Storage } from "../../../infrastructure/api/storage/storage";
-import { subHours, differenceInHours } from "date-fns";
 import { Podcast } from "../../../domain/models/Podcast";
 import { PodcastApplication } from "../../../aplication";
+import {
+  getStorageData,
+  isFetchExpired,
+  saveResponseInStorage,
+} from "../../helpers";
 
 const PODCAST_STORAGE_KEY = "podcast_storage";
-
-interface StorageData {
-  podcastList: Podcast[];
-  date: string;
-}
-
-const savePodcastRequest = (podcastData: Podcast[]) =>
-  Storage.set(
-    PODCAST_STORAGE_KEY,
-    JSON.stringify({
-      podcastList: podcastData,
-      date: new Date().toISOString(),
-    })
-  );
-
-const isFetchExpired = async (storageData: StorageData): Promise<boolean> => {
-  if (!storageData) return true;
-  const oneDayDiff = subHours(new Date(), 24);
-  const diffInHours = differenceInHours(new Date(storageData.date), oneDayDiff);
-  return diffInHours > 24;
-};
-
-const getPodcastStorageData = async () => {
-  const lastFetch = await Storage.get(PODCAST_STORAGE_KEY);
-  return lastFetch ? JSON.parse(lastFetch) : null;
-};
 
 const fetchPodcast = async (): Promise<Podcast[]> => {
   try {
     const podcasts = await PodcastApplication.getPodcastList();
-    savePodcastRequest(podcasts);
+    saveResponseInStorage({ data: podcasts }, PODCAST_STORAGE_KEY);
     return podcasts;
   } catch (e) {
-    savePodcastRequest([]);
+    saveResponseInStorage({ data: [] }, PODCAST_STORAGE_KEY);
     return [];
   }
 };
 
 const getPodcast = async (): Promise<Podcast[]> => {
-  const podcastStorageData = await getPodcastStorageData();
-  const isExpired = await isFetchExpired(podcastStorageData);
-  if (!isExpired) return podcastStorageData.podcastList;
+  const podcastStorageData = await getStorageData(PODCAST_STORAGE_KEY);
+  const isExpired = await isFetchExpired(podcastStorageData?.date);
+  if (!isExpired) return podcastStorageData.data;
   return fetchPodcast();
 };
 

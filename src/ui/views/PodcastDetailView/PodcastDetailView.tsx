@@ -1,18 +1,19 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { PodcastDetailData } from "../../../domain/models/PodcastDetail";
+import { PodcastDetail } from "../../../domain/models/PodcastDetail";
 import { getPodcastDetail } from "./PodcastDetailView.controller";
 
 const PodcastDetailView = () => {
   const { podcastId } = useParams();
-  const [podcast, setPodcast] = useState([] as PodcastDetailData[]);
+  const [podcast, setPodcast] = useState({} as PodcastDetail);
 
   const fetchPodcastDetail = useCallback(async () => {
     try {
       const data = await getPodcastDetail(podcastId as string);
+      console.log(data);
       setPodcast(data);
     } catch (e) {
-      setPodcast([]);
+      setPodcast({} as PodcastDetail);
     }
   }, [podcastId]);
 
@@ -22,7 +23,7 @@ const PodcastDetailView = () => {
     }
   }, [fetchPodcastDetail, podcastId]);
 
-  return <div> PodcastDetail </div>;
+  return <div> PodcastDetail {podcast?.results?.[0].artistName}</div>;
 };
 
 export default PodcastDetailView;
