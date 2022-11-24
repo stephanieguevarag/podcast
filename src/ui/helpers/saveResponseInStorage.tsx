@@ -2,8 +2,8 @@ import { Podcast } from "../../domain/models/Podcast";
 import { PodcastDetail } from "../../domain/models/PodcastDetail";
 import { Storage } from "../../infrastructure/api/storage/storage";
 
-export interface PodcastDetailStore {
-  data: PodcastDetail;
+export interface PodcastDetailStore extends PodcastDetail {
+  basicInfo: Podcast;
   storeDate: string;
 }
 export interface PodcastDetailStoreData {

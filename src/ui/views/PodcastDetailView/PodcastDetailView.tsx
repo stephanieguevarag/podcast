@@ -1,21 +1,27 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Podcast } from "../../../domain/models/Podcast";
 import { PodcastDetail } from "../../../domain/models/PodcastDetail";
+import { PodcastCard } from "../../components/PodcastCard";
+import { usePodcast } from "../../context/Podcast.context";
 import { getPodcastDetail } from "./PodcastDetailView.controller";
+import { Wrapper } from "./PodcastDetailView.styles";
 
 const PodcastDetailView = () => {
   const { podcastId } = useParams();
-  const [podcast, setPodcast] = useState({} as PodcastDetail);
+  const [podcastEpisodes, setPodcastEpisodes] = useState({} as PodcastDetail);
+  const [podcastInfoCard, setPodcastInfoCard] = useState({} as Podcast);
+  const { currentPodcast } = usePodcast();
 
   const fetchPodcastDetail = useCallback(async () => {
     try {
-      const data = await getPodcastDetail(podcastId as string);
-      console.log(data);
-      setPodcast(data);
+      const data = await getPodcastDetail(podcastId as string, currentPodcast);
+      setPodcastEpisodes(data);
+      setPodcastInfoCard(data?.basicInfo);
     } catch (e) {
-      setPodcast({} as PodcastDetail);
+      setPodcastEpisodes({} as PodcastDetail);
     }
-  }, [podcastId]);
+  }, [currentPodcast, podcastId]);
 
   useEffect(() => {
     if (podcastId) {
@@ -23,7 +29,19 @@ const PodcastDetailView = () => {
     }
   }, [fetchPodcastDetail, podcastId]);
 
-  return <div> PodcastDetail {podcast?.results?.[0].artistName}</div>;
+  return (
+    <Wrapper>
+      {podcastInfoCard && Object.keys(podcastInfoCard).length > 0 && (
+        <PodcastCard
+          name={podcastInfoCard?.name?.label}
+          image={podcastInfoCard?.image}
+          author={podcastInfoCard?.artist?.label}
+          description={podcastInfoCard?.summary?.label}
+          onClick={() => {}}
+        ></PodcastCard>
+      )}
+    </Wrapper>
+  );
 };
 
 export default PodcastDetailView;
