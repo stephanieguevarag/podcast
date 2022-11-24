@@ -1,10 +1,11 @@
 import React from "react";
 import { Image } from "../../../domain/models/Podcast";
+import { Box } from "../Box";
 
 import {
-  Box,
   Container,
   Cover,
+  InfoWrapper,
   Subtitle,
   Text,
   Title,
@@ -28,18 +29,20 @@ const PodcastCard = ({
 }: PodcastCardProps) => {
   return (
     <Wrapper onClick={onClick}>
-      <Cover
-        src={image[0].label}
-        srcSet={`${image[0].label} 256w, ${image[1].label} 512w, ${image[2].label} 1024w`}
-        alt={name}
-      />
       <Box>
-        <Container>
-          <Title>{name}</Title>
-          <Text>by {author}</Text>
-        </Container>
-        <Subtitle>Description:</Subtitle>
-        <Text>{description}</Text>
+        <Cover
+          src={image[0].label}
+          srcSet={`${image[0].label} 256w, ${image[1].label} 512w, ${image[2].label} 1024w`}
+          alt={name}
+        />
+        <InfoWrapper>
+          <Container>
+            <Title>{name}</Title>
+            <Text>by {author}</Text>
+          </Container>
+          <Subtitle>Description:</Subtitle>
+          <Text>{description}</Text>
+        </InfoWrapper>
       </Box>
     </Wrapper>
   );

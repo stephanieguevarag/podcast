@@ -6,13 +6,7 @@ interface ImageProps {
 }
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
   width: 270px;
-  padding: 25px 15px;
-  box-shadow: 0px 2px 5px 3px var(--color-secondary-light);
   cursor: pointer;
 `;
 
@@ -54,9 +48,9 @@ const Subtitle = styled.p`
   padding: 17px 0px 3px;
 `;
 
-const Box = styled.div`
+const InfoWrapper = styled.div`
   width: 100%;
   text-align: start;
 `;
 
-export { Wrapper, Cover, Container, Subtitle, Text, Title, Box };
+export { Wrapper, Cover, Container, Subtitle, Text, Title, InfoWrapper };
