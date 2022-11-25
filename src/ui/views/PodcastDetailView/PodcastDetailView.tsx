@@ -2,10 +2,11 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Podcast } from "../../../domain/models/Podcast";
 import { PodcastDetail } from "../../../domain/models/PodcastDetail";
+import { Box } from "../../components/Box";
 import { PodcastCard } from "../../components/PodcastCard";
 import { usePodcast } from "../../context/Podcast.context";
 import { getPodcastDetail } from "./PodcastDetailView.controller";
-import { Wrapper } from "./PodcastDetailView.styles";
+import { Container, Count, InfoBox, Wrapper } from "./PodcastDetailView.styles";
 
 const PodcastDetailView = () => {
   const { podcastId } = useParams();
@@ -28,18 +29,27 @@ const PodcastDetailView = () => {
       fetchPodcastDetail();
     }
   }, [fetchPodcastDetail, podcastId]);
-
+  console.log(podcastEpisodes);
   return (
     <Wrapper>
-      {podcastInfoCard && Object.keys(podcastInfoCard).length > 0 && (
-        <PodcastCard
-          name={podcastInfoCard?.name?.label}
-          image={podcastInfoCard?.image}
-          author={podcastInfoCard?.artist?.label}
-          description={podcastInfoCard?.summary?.label}
-          onClick={() => {}}
-        ></PodcastCard>
-      )}
+      <InfoBox>
+        {podcastInfoCard && Object.keys(podcastInfoCard).length > 0 && (
+          <PodcastCard
+            name={podcastInfoCard?.name?.label}
+            image={podcastInfoCard?.image}
+            author={podcastInfoCard?.artist?.label}
+            description={podcastInfoCard?.summary?.label}
+          ></PodcastCard>
+        )}
+      </InfoBox>
+      <Container>
+        <Box>
+          <Count> Episodes: {podcastEpisodes?.resultCount}</Count>
+        </Box>
+      </Container>
+      <Container>
+        <Box>Table</Box>
+      </Container>
     </Wrapper>
   );
 };

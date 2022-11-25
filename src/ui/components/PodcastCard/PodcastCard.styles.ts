@@ -5,11 +5,6 @@ interface ImageProps {
   srcSet: string;
 }
 
-const Wrapper = styled.div`
-  width: 270px;
-  cursor: pointer;
-`;
-
 const Cover = styled.img.attrs(({ src, srcSet }: ImageProps) => ({
   src: src,
   srsrcSetc: srcSet,
@@ -17,13 +12,13 @@ const Cover = styled.img.attrs(({ src, srcSet }: ImageProps) => ({
   width: 170px;
   border-radius: 5px;
   margin-bottom: 25px;
+  align-self: center;
 `;
 
 const Container = styled.div`
   border-top: 1px solid var(--color-secondary-light);
   border-bottom: 1px solid var(--color-secondary-light);
   padding: 17px 8px;
-  width: 100%;
 `;
 
 const Title = styled.p`
@@ -48,9 +43,8 @@ const Subtitle = styled.p`
   padding: 17px 0px 3px;
 `;
 
-const InfoWrapper = styled.div`
-  width: 100%;
+const TextAlign = styled.div`
   text-align: start;
 `;
 
-export { Wrapper, Cover, Container, Subtitle, Text, Title, InfoWrapper };
+export { Cover, Container, Subtitle, Text, Title, TextAlign };
