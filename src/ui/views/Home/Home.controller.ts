@@ -26,4 +26,4 @@ const getPodcast = async (): Promise<Podcast[]> => {
   return fetchPodcast();
 };
 
-export { getPodcast };
+export { getPodcast, PODCAST_STORAGE_KEY };

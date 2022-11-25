@@ -6,6 +6,8 @@ import "./styles.css";
 import { PodcastDetailView } from "./ui/views/PodcastDetailView";
 import { Header } from "./ui/components/Header";
 import { PodcastContextProvider } from "./ui/context/Podcast.context";
+import { EpisodesList } from "./ui/views/EpisodesList";
+import { Episode } from "./ui/views/Episode";
 
 const App = () => {
   return (
@@ -15,7 +17,17 @@ const App = () => {
         <Header></Header>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="podcast/:podcastId" element={<PodcastDetailView />} />
+          <Route
+            path="podcast/:podcastId/*"
+            element={
+              <PodcastDetailView>
+                <Routes>
+                  <Route path="/" element={<EpisodesList />} />
+                  <Route path="/episode/:episodeId" element={<Episode />} />
+                </Routes>
+              </PodcastDetailView>
+            }
+          ></Route>
         </Routes>
       </PodcastContextProvider>
     </Fragment>

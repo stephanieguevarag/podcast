@@ -13,12 +13,14 @@ const Cover = styled.img.attrs(({ src, srcSet }: ImageProps) => ({
   border-radius: 5px;
   margin-bottom: 25px;
   align-self: center;
+  cursor: pointer;
 `;
 
 const Container = styled.div`
   border-top: 1px solid var(--color-secondary-light);
   border-bottom: 1px solid var(--color-secondary-light);
   padding: 17px 8px;
+  cursor: pointer;
 `;
 
 const Title = styled.p`

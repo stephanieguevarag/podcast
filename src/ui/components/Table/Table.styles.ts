@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.table`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -19,10 +19,12 @@ const Text = styled.div<{
   isAlignCenter?: boolean;
   colorValue?: string;
   isLink?: boolean;
+  isBold?: boolean;
 }>`
   cursor: ${(props) => props.isLink && "pointer"};
   text-align: ${(props) => props.isAlignCenter && "center"};
   color: ${(props) => `var(--color-${props.colorValue || "primary"})`};
+  font-weight: ${(props) => props.isBold && "bold"};
   margin: 0;
   font-size: 0.9rem;
 `;

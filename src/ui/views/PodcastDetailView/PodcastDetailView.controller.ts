@@ -1,9 +1,6 @@
 import { PodcastApplication } from "../../../aplication";
 import { Podcast } from "../../../domain/models/Podcast";
-import {
-  PodcastDetail,
-  PodcastDetailData,
-} from "../../../domain/models/PodcastDetail";
+import { PodcastDetail } from "../../../domain/models/PodcastDetail";
 import {
   getStorageData,
   isFetchExpired,
@@ -11,15 +8,10 @@ import {
   PodcastDetailStoreData,
   saveResponseInStorage,
 } from "../../helpers";
-import { format } from "date-fns";
+import { PODCAST_STORAGE_KEY } from "../Home/Home.controller";
 
 const PODCAST_DETAIL_STORAGE_KEY = "detail_storage";
 
-export interface PodcastDetailTable {
-  title: string;
-  duration: string;
-  releaseDate: string;
-}
 const saveResponseDetailInStorage = async (
   storeData: PodcastDetailStoreData,
   id: string,
@@ -62,6 +54,8 @@ const getPodcastDetail = async (
   podcastId: string,
   currentPodcast: Podcast
 ): Promise<PodcastDetailStore> => {
+  const existBasicInfo = await getStorageData(PODCAST_STORAGE_KEY);
+  if (!existBasicInfo) return {} as PodcastDetailStore;
   const podcastStorageData = await getStorageData(PODCAST_DETAIL_STORAGE_KEY);
   const isExpired = await isFetchExpired(
     podcastStorageData?.[podcastId]?.storeDate
@@ -70,21 +64,4 @@ const getPodcastDetail = async (
   return fetchPodcastDetail(podcastId, podcastStorageData, currentPodcast);
 };
 
-const mapDataTable = (
-  podcastList: PodcastDetailData[]
-): PodcastDetailTable[] => {
-  if (podcastList?.length > 0) {
-    delete podcastList[0];
-    return podcastList.map((podcast) => ({
-      title: podcast.trackName,
-      releaseDate: format(new Date(podcast.releaseDate), "d/M/y"),
-      duration: podcast.trackTimeMillis
-        ? format(podcast.trackTimeMillis, "mm:ss")
-        : "",
-    }));
-  } else {
-    return [];
-  }
-};
-
-export { getPodcastDetail, mapDataTable };
+export { getPodcastDetail };
