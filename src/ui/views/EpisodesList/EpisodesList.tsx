@@ -17,7 +17,7 @@ const EpisodesList = () => {
     if (episodesList?.results) {
       setDataTable(mapDataTable(episodesList?.results));
     }
-  }, [episodesList]);
+  }, [episodesList, setCurrentEpisode]);
 
   return (
     <Fragment>

@@ -1,7 +1,6 @@
 import React, { Fragment, useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Podcast } from "../../../domain/models/Podcast";
-import { Loading } from "../../components/Loading";
 import { PodcastCard } from "../../components/PodcastCard";
 import { usePodcast } from "../../context/Podcast.context";
 import { getPodcastDetail } from "./PodcastDetailView.controller";
@@ -11,8 +10,7 @@ const PodcastDetailView = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
   const { podcastId } = useParams();
   const [podcastInfoCard, setPodcastInfoCard] = useState({} as Podcast);
-  const { currentPodcast, setEpisodesList } = usePodcast();
-  const [loading, setLoading] = useState(true);
+  const { currentPodcast, setEpisodesList, setLoading, loading } = usePodcast();
   const fetchPodcastDetail = useCallback(async () => {
     try {
       const data = await getPodcastDetail(podcastId as string, currentPodcast);
@@ -21,6 +19,7 @@ const PodcastDetailView = ({ children }: { children: React.ReactNode }) => {
       setPodcastInfoCard(data.basicInfo);
       setLoading(false);
     } catch (e) {
+      setLoading(true);
       navigate("/");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -34,9 +33,7 @@ const PodcastDetailView = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <Fragment>
-      {loading ? (
-        <Loading />
-      ) : (
+      {!loading && (
         <Wrapper>
           <InfoBox>
             {podcastInfoCard && Object.keys(podcastInfoCard).length > 0 && (

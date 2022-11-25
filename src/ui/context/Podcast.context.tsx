@@ -11,6 +11,8 @@ const podcastInitialValue = {
   setEpisodesList: () => null,
   currentEpisode: null as unknown as PodcastDetailTable,
   setCurrentEpisode: () => null,
+  loading: true,
+  setLoading: () => null,
 };
 
 type PodcastContextType = {
@@ -20,6 +22,8 @@ type PodcastContextType = {
   setEpisodesList: React.Dispatch<React.SetStateAction<PodcastDetailStore>>;
   currentEpisode: PodcastDetailTable;
   setCurrentEpisode: React.Dispatch<React.SetStateAction<PodcastDetailTable>>;
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const PodcastContext =
@@ -39,17 +43,20 @@ const PodcastContextProvider = ({
   const [currentEpisode, setCurrentEpisode] = useState(
     null as unknown as PodcastDetailTable
   );
+  const [loading, setLoading] = useState(true);
 
   const value = useMemo(
     () => ({
       currentPodcast,
       episodesList,
       currentEpisode,
+      loading,
+      setLoading,
       setCurrentEpisode,
       setCurrentPodcast,
       setEpisodesList,
     }),
-    [currentEpisode, currentPodcast, episodesList]
+    [currentEpisode, currentPodcast, episodesList, loading]
   );
 
   return (

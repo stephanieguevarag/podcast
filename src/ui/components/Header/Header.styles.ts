@@ -9,8 +9,9 @@ const Navbar = styled.nav`
   align-items: center;
   width: 100%;
   height: 40px;
-  padding: 5px;
+  padding: 5px 40px 5px;
   border-bottom: 1px solid var(--color-secondary-light);
+  justify-content: space-between;
 `;
 
 const Link = styled.a.attrs(({ href }: LinkProps) => ({

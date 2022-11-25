@@ -4,13 +4,11 @@ import { PodcastList } from "../../components/PodcastList";
 import { usePodcast } from "../../context/Podcast.context";
 import { getPodcast } from "./Home.controller";
 import { useNavigate } from "react-router-dom";
-import { Loading } from "../../components/Loading";
 
 const Home = () => {
   const navigate = useNavigate();
   const [podcastList, setPodcastList] = useState([] as Podcast[]);
-  const { setCurrentPodcast } = usePodcast();
-  const [loading, setLoading] = useState(true);
+  const { setCurrentPodcast, setLoading, loading } = usePodcast();
 
   const fetchPodcast = useCallback(async () => {
     try {
@@ -20,22 +18,21 @@ const Home = () => {
     } catch (e) {
       setPodcastList([]);
     }
-  }, []);
+  }, [setLoading]);
 
   useEffect(() => {
     fetchPodcast();
   }, [fetchPodcast]);
 
   const onSelectPodcast = (value: Podcast) => {
+    setLoading(true);
     setCurrentPodcast(value);
     navigate(`podcast/${value.id.attributes["im:id"]}`);
   };
 
   return (
     <Fragment>
-      {loading ? (
-        <Loading />
-      ) : (
+      {!loading && (
         <PodcastList
           podcastList={podcastList}
           onSelectPodcast={onSelectPodcast}
