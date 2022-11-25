@@ -1,6 +1,9 @@
 import { PodcastApplication } from "../../../aplication";
 import { Podcast } from "../../../domain/models/Podcast";
-import { PodcastDetail } from "../../../domain/models/PodcastDetail";
+import {
+  PodcastDetail,
+  PodcastDetailData,
+} from "../../../domain/models/PodcastDetail";
 import {
   getStorageData,
   isFetchExpired,
@@ -8,9 +11,15 @@ import {
   PodcastDetailStoreData,
   saveResponseInStorage,
 } from "../../helpers";
+import { format } from "date-fns";
 
 const PODCAST_DETAIL_STORAGE_KEY = "detail_storage";
 
+export interface PodcastDetailTable {
+  title: string;
+  duration: string;
+  releaseDate: string;
+}
 const saveResponseDetailInStorage = async (
   storeData: PodcastDetailStoreData,
   id: string,
@@ -61,4 +70,21 @@ const getPodcastDetail = async (
   return fetchPodcastDetail(podcastId, podcastStorageData, currentPodcast);
 };
 
-export { getPodcastDetail };
+const mapDataTable = (
+  podcastList: PodcastDetailData[]
+): PodcastDetailTable[] => {
+  if (podcastList?.length > 0) {
+    delete podcastList[0];
+    return podcastList.map((podcast) => ({
+      title: podcast.trackName,
+      releaseDate: format(new Date(podcast.releaseDate), "d/M/y"),
+      duration: podcast.trackTimeMillis
+        ? format(podcast.trackTimeMillis, "mm:ss")
+        : "",
+    }));
+  } else {
+    return [];
+  }
+};
+
+export { getPodcastDetail, mapDataTable };

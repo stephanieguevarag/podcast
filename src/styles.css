@@ -2,7 +2,9 @@
     --font-family-roboto: 'Roboto', sans-serif;
     --color-primary: black;
     --color-secondary: #5e5e5e;
+    --color-secondary-medium: #dbd6d6;
     --color-secondary-light: rgba(235, 235, 235, 1);
+    --color-secondary-lighter: rgb(245, 245, 245);
     --color-link: #0c89ea;
 }
 
