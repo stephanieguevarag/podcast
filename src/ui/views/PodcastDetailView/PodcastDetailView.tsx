@@ -35,7 +35,7 @@ const PodcastDetailView = ({ children }: { children: React.ReactNode }) => {
     <Fragment>
       {!loading && (
         <Wrapper>
-          <InfoBox>
+          <InfoBox data-testid="podcast-detail">
             {podcastInfoCard && Object.keys(podcastInfoCard).length > 0 && (
               <PodcastCard
                 name={podcastInfoCard?.name?.label}
@@ -45,6 +45,7 @@ const PodcastDetailView = ({ children }: { children: React.ReactNode }) => {
                 onClick={() =>
                   navigate(`/podcast/${podcastInfoCard.id.attributes["im:id"]}`)
                 }
+                id="podcast-card"
               ></PodcastCard>
             )}
           </InfoBox>

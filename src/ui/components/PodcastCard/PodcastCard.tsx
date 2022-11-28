@@ -17,6 +17,7 @@ interface PodcastCardProps {
   author: string;
   description: string;
   onClick: () => void;
+  id?: string
 }
 
 const PodcastCard = ({
@@ -25,9 +26,10 @@ const PodcastCard = ({
   author,
   description,
   onClick,
+  id
 }: PodcastCardProps) => {
   return (
-    <Box>
+    <Box data-testid={id}>
       <Cover
         src={image[0].label}
         srcSet={`${image[0].label} 256w, ${image[1].label} 512w, ${image[2].label} 1024w`}

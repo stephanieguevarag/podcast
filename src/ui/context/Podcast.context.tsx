@@ -70,4 +70,4 @@ PodcastContextProvider.propTypes = {
 
 const usePodcast = () => useContext(PodcastContext) || {};
 
-export { usePodcast, PodcastContextProvider };
+export { usePodcast, PodcastContextProvider, PodcastContext };

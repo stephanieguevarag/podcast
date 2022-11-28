@@ -12,7 +12,7 @@ const PodcastList = ({ podcastList, onSelectPodcast }: PodcastListProps) => {
   return (
     <Wrapper data-testid="podcast-list">
       {podcastList &&
-        podcastList.map((item) => {
+        podcastList.map((item, index) => {
           const { id, name, image, artist } = item;
           return (
             <PodcastItem
@@ -21,6 +21,7 @@ const PodcastList = ({ podcastList, onSelectPodcast }: PodcastListProps) => {
               image={image}
               author={artist.label}
               onClick={() => onSelectPodcast(item)}
+              id={`podcast-item-${index}`}
             ></PodcastItem>
           );
         })}

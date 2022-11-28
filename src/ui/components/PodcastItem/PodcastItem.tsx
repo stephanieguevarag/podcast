@@ -8,11 +8,18 @@ interface PodcastItemProps {
   name: string;
   author: string;
   onClick: () => void;
+  id?: string;
 }
 
-const PodcastItem = ({ image, name, author, onClick }: PodcastItemProps) => {
+const PodcastItem = ({
+  image,
+  name,
+  author,
+  onClick,
+  id,
+}: PodcastItemProps) => {
   return (
-    <Wrapper onClick={onClick}>
+    <Wrapper onClick={onClick} data-testid={id}>
       <Cover
         src={image[0].label}
         srcSet={`${image[0].label} 256w, ${image[1].label} 512w, ${image[2].label} 1024w`}
