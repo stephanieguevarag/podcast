@@ -31,6 +31,7 @@ const Table = ({ titles, content, onClickLink }: TableProps) => {
             colorValue={"link"}
             onClick={(e) => onClick(e, el)}
             isLink={true}
+            data-testid={`table-link-${index}`}
           >
             {el.title}
           </Text>

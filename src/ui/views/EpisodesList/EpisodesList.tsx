@@ -27,7 +27,7 @@ const EpisodesList = () => {
         </Box>
       </Container>
       {dataTable && (
-        <Container>
+        <Container data-testid="episode-list">
           <Box>
             <Table
               titles={titlesTable}

@@ -10,7 +10,7 @@ const Episode = () => {
   return (
     <Container>
       {currentEpisode && (
-        <Box>
+        <Box id="current-episode">
           <Title> {currentEpisode.title}</Title>
           <Text> {htmlParser(currentEpisode.description)}</Text>
           <Audio src={currentEpisode.episodeUrl} controls></Audio>
