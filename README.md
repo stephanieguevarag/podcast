@@ -1,8 +1,23 @@
-# Getting Started with Create React App
+# Podcast app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Web application to listen musical podcasts.
 
-## Available Scripts
+Podcast information provided by iTunes.
+
+## Preview
+
+We have a list of podcasts that you can select to see their available episodes
+
+<img width="1382" alt="image" src="https://user-images.githubusercontent.com/92716718/204583575-850bfd18-da8a-4e33-93f4-3199442ade75.png">
+
+<img width="1366" alt="image" src="https://user-images.githubusercontent.com/92716718/204583890-7318dd58-3826-48e4-a112-f4c482f7a85d.png">
+
+You can choose a podcast episode and listen to it
+
+<img width="1355" alt="image" src="https://user-images.githubusercontent.com/92716718/204584471-608fba51-75e9-4983-bee2-1f4a387bbd85.png">
+
+
+## Scripts
 
 In the project directory, you can run:
 
@@ -18,6 +33,10 @@ You will also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run cypress:open`
+
+Launches the e2e with cypress
 
 ### `npm run build`
 
