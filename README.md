@@ -1,8 +1,13 @@
 # Podcast app
 
+
 Web application to listen musical podcasts.
 
 Podcast information provided by iTunes.
+
+
+![Mandatory Gif](https://media.giphy.com/media/LU0EPR6tWaNREI35hU/giphy.gif)
+
 
 ## Preview
 
@@ -10,12 +15,34 @@ We have a list of podcasts that you can select to see their available episodes
 
 <img width="1382" alt="image" src="https://user-images.githubusercontent.com/92716718/204583575-850bfd18-da8a-4e33-93f4-3199442ade75.png">
 
-<img width="1366" alt="image" src="https://user-images.githubusercontent.com/92716718/204583890-7318dd58-3826-48e4-a112-f4c482f7a85d.png">
+<img width="1366" alt="image" src="https://user-images.githubusercontent.com/92716718/204583890-7318dd58-3826-48e4-a112-f4c482f7a85d.png" style="border: 1px solid blue">
 
 You can choose a podcast episode and listen to it
 
 <img width="1355" alt="image" src="https://user-images.githubusercontent.com/92716718/204584471-608fba51-75e9-4983-bee2-1f4a387bbd85.png">
 
+## Running App
+
+#### Clone this repo, run it and you're good to go 🚀 🚀
+
+
+Clone the project
+
+```bash
+ git clone git@github.com:stephanieguevarag/podcast.git
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```
 
 ## Scripts
 
