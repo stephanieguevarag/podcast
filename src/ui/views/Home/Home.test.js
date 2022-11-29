@@ -97,10 +97,10 @@ const mockResponse = [
 
 const providerValue = {
   loading: false,
-  setLoading: jest.fn()
+  setLoading: jest.fn(),
 };
 
-jest.mock('./Home.controller.ts');
+jest.mock("./Home.controller.ts");
 
 const mockedGetPodcast = mocked(getPodcast, true);
 
@@ -114,17 +114,18 @@ const renderComponent = () =>
   );
 
 describe("Home view", () => {
-
   beforeEach(() => {
     mockedGetPodcast.mockReturnValue(Promise.resolve(mockResponse));
   });
 
   test("Should show podcastList component", async () => {
-    renderComponent();   
-    const podcastList = screen.getByTestId("podcast-list");
-    expect(podcastList).toBeInTheDocument();
+    renderComponent();
+    const podcastList = await screen.findByTestId("podcast-list");
+    await waitFor(async () => {
+      expect(podcastList).toBeInTheDocument();
+    });
   });
-  
+
   test("Should show first podcast item", async () => {
     renderComponent();
     const podcastList = await screen.findByTestId("podcast-item-0");
