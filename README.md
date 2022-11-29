@@ -21,6 +21,10 @@ You can choose a podcast episode and listen to it
 
 <img width="1355" alt="image" src="https://user-images.githubusercontent.com/92716718/204584471-608fba51-75e9-4983-bee2-1f4a387bbd85.png">
 
+## Built With
+- react v18.2.0
+- styled-components v5.3.6
+
 ## Running App
 
 #### Clone this repo, run it and you're good to go 🚀 🚀
