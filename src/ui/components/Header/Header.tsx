@@ -6,7 +6,7 @@ import { Navbar, Link } from "./Header.styles";
 const Header = () => {
   const { loading } = usePodcast();
   return (
-    <Navbar>
+    <Navbar data-testid="header">
       <Link href="/"> Podcaster </Link>
       {loading && <Loading />}
     </Navbar>

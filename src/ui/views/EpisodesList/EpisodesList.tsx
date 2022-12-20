@@ -23,7 +23,9 @@ const EpisodesList = () => {
     <Fragment>
       <Container>
         <Box>
-          <Title> Episodes: {episodesList?.resultCount}</Title>
+          <Title data-testid="episodes-count">
+            Episodes: {episodesList?.resultCount}
+          </Title>
         </Box>
       </Container>
       {dataTable && (
